@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Firebase Authentication</title>
+<link rel="stylesheet" href="cssFile.css">
+</head>
+
+<body>
+  
+<div id="login-box">
+  <div class="left">
+    <h1 id='status'>login</h1>
+    <input type="text" id="email" name="email" placeholder="E-mail" />
+    <input type="password" id="password" name="password" placeholder="Password" />
+    
+    <input type="submit" id='login' name="login" value="Login" />
+    <h4>Create a new account <a href="signup.html">Sign up</a></h4>
+    <h5><a href="#">Forgot Password</a></h5>
+
+  </div>
+  
+</body>
+
+<script type="module">
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-database.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+	    	apiKey: "AIzaSyCs9uMZJv4RKp5GL-e3-HWpefQtWa9IGds",
+	    	authDomain: "mytrashapp-9e17f.firebaseapp.com",
+	    	databaseURL: "https://mytrashapp-9e17f-default-rtdb.firebaseio.com",
+		    projectId: "mytrashapp-9e17f",
+		    storageBucket: "mytrashapp-9e17f.appspot.com",
+	    	messagingSenderId: "965567744412",
+	    	appId: "1:965567744412:web:2034a2565c9e00612ca059"
+	  	};
+
+
+
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth();
+
+
+    login.addEventListener('click',(e) => {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            
+            
+            
+            window.location.assign("start.html");
+            })
+            .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+
+            alert(errorMessage);
+            // ..
+            });
+
+        });
+
+        
+</script>
+
+
+
+</html>
